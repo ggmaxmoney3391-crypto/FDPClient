@@ -7,6 +7,7 @@ package net.ccbluex.liquidbounce.injection.forge.mixins.render;
 
 import net.ccbluex.liquidbounce.features.module.modules.combat.HitBox;
 import net.ccbluex.liquidbounce.features.module.modules.visual.FreeCam;
+import net.ccbluex.liquidbounce.features.module.modules.visual.HideClans;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
@@ -53,5 +54,13 @@ public abstract class MixinRenderManager {
     @Inject(method = "renderEntityStatic", at = @At("TAIL"))
     private void injectFreeCam(Entity p_renderEntityStatic_1_, float p_renderEntityStatic_2_, boolean p_renderEntityStatic_3_, CallbackInfoReturnable<Boolean> cir) {
         FreeCam.INSTANCE.useModifiedPosition();
+    }
+
+    // HideClans: não renderiza jogadores da lista de amigos (clã)
+    @Inject(method = "doRenderEntity", at = @At("HEAD"), cancellable = true)
+    private void hideClanEntity(Entity entity, double x, double y, double z, float entityYaw, float partialTicks, boolean hideDebugBox, CallbackInfoReturnable<Boolean> cir) {
+        if (HideClans.INSTANCE.shouldHideEntity(entity)) {
+            cir.setReturnValue(false);
+        }
     }
 }

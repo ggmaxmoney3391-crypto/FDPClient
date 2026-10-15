@@ -106,6 +106,7 @@ object NameTags : Module("NameTags", Category.VISUAL) {
         .filter { bot || !isBot(it) }
         .filter { !onLook || isLookingOnEntities(it, maxAngleDifference.toDouble()) }
         .filter { thruBlocks || isEntityHeightVisible(it) }
+        .filter { !HideClans.shouldHideEntity(it) }
 
     val onRender3D = handler<Render3DEvent> {
         if (mc.theWorld == null || mc.thePlayer == null) return@handler

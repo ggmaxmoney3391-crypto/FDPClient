@@ -1099,12 +1099,25 @@ object AutoBreakPlus : Module("AutoBreakPlus", Category.PLAYER) {
 
         val targetText = if (target != null) "sim" else "NAO"
 
+              val keyForward = mc.gameSettings?.keyBindForward?.isKeyDown == true
+        val targetPos = if (target != null) "${target.x},${target.y},${target.z}" else "-"
+
+               val keyForward = mc.gameSettings?.keyBindForward?.isKeyDown == true
+        val targetPos = if (target != null) "${target.x},${target.y},${target.z}" else "-"
+
+        val keyForward = mc.gameSettings?.keyBindForward?.isKeyDown == true
+        val targetPos = if (target != null) "${target.x},${target.y},${target.z}" else "-"
+
         player.addChatMessage(
             ChatComponentText(
-                "§7[AutoBreakPlus] §fdirecao=$direction alvo=$targetText andando=$walking olhando=$looking |$ahead"
+                "§7[ABP] §fdir=$direction alvo=$targetText($targetPos) andando=$walking tecla=$keyForward " +
+                        "pos=${"%.2f".format(player.posX)},${"%.2f".format(player.posY)},${"%.2f".format(player.posZ)} " +
+                        "chao=${player.onGround} yaw=${"%.0f".format(player.rotationYaw)} " +
+                        "pitch=${"%.0f".format(player.rotationPitch)} pausa=$humanPauseTicks " +
+                        "curva=$sideTurnActive espera=$turnMovementDelay desc=$downwardRecovery " +
+                        "olhando=$looking |$ahead"
             )
         )
-    }
 
     // ---------------------------------------------------------------- rotação humanizada
 

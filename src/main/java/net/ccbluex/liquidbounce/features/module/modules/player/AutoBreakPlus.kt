@@ -1099,12 +1099,6 @@ object AutoBreakPlus : Module("AutoBreakPlus", Category.PLAYER) {
 
         val targetText = if (target != null) "sim" else "NAO"
 
-              val keyForward = mc.gameSettings?.keyBindForward?.isKeyDown == true
-        val targetPos = if (target != null) "${target.x},${target.y},${target.z}" else "-"
-
-               val keyForward = mc.gameSettings?.keyBindForward?.isKeyDown == true
-        val targetPos = if (target != null) "${target.x},${target.y},${target.z}" else "-"
-
         val keyForward = mc.gameSettings?.keyBindForward?.isKeyDown == true
         val targetPos = if (target != null) "${target.x},${target.y},${target.z}" else "-"
 
@@ -1118,6 +1112,7 @@ object AutoBreakPlus : Module("AutoBreakPlus", Category.PLAYER) {
                         "olhando=$looking |$ahead"
             )
         )
+    }
 
     // ---------------------------------------------------------------- rotação humanizada
 
